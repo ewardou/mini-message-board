@@ -1,11 +1,22 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title><%= title %></title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-  </head>
-  <body>
-    <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
-  </body>
+    <head>
+        <title><%= title %></title>
+        <link rel="stylesheet" href="/stylesheets/style.css" />
+    </head>
+    <body>
+        <header>
+            <h1><%= title %></h1>
+            <a href="/new">New message</a>
+        </header>
+        <main>
+            <% messages.forEach(element => { %>
+            <div class="message">
+                <p><%= element.text %></p>
+                <p><%= element.user %></p>
+                <p><%= element.added %></p>
+            </div>
+            <% }); %>
+        </main>
+    </body>
 </html>

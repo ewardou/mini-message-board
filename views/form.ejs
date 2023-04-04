@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>New message</title>
+        <link rel="stylesheet" href="/stylesheets/style.css" />
+    </head>
+    <body>
+        <header>
+            <h1>Create a new message</h1>
+            <a href="/">Message board</a>
+        </header>
+        <main>
+            <form method="post" action="/new">
+                <label for="author"
+                    >Author:
+                    <input type="text" id="author" name="author" required
+                /></label>
+                <label for="message"
+                    >Message:
+                    <textarea
+                        name="message"
+                        id="message"
+                        rows="10"
+                        required
+                    ></textarea>
+                </label>
+                <button type="submit">Submit</button>
+            </form>
+        </main>
+    </body>
+</html>

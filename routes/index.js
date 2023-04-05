@@ -1,39 +1,30 @@
 const express = require('express');
+const getModel = require('../models/messages');
 
 const router = express.Router();
 
 router.use(express.json());
 router.use(express.urlencoded({ extended: false }));
 
-const messages = [
-    {
-        text: 'Hi there!',
-        user: 'Amando',
-        added: new Date(),
-    },
-    {
-        text: 'Hello World!',
-        user: 'Charles',
-        added: new Date(),
-    },
-];
-
-/* GET home page. */
-router.get('/', function (req, res, next) {
+router.get('/', async function (req, res) {
+    const model = await getModel();
+    const messages = await model.find();
     res.render('index', { title: 'Mini Messageboard', messages });
 });
 
-router.get('/new', function (req, res, next) {
+router.get('/new', function (req, res) {
     res.render('form');
 });
 
-router.post('/new', function (req, res, next) {
+router.post('/new', async function (req, res) {
     const newMessage = {
         user: req.body.author,
         text: req.body.message,
         added: new Date(),
     };
-    messages.push(newMessage);
+    const model = await getModel();
+    const instance = new model({ ...newMessage });
+    instance.save();
     res.redirect('/');
 });
 
